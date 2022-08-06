@@ -1,0 +1,47 @@
+<?php
+/**
+ * @var \Favicode\Faq\Block\ProductFaq $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$questions = $block->getProductFaq();
+?>
+
+<h2> FAQ </h2>
+<hr>
+<div>
+
+    <?php if (empty($questions)) : ?>
+        <p>There are no FAQ for this product</p>
+    <?php else : ?>
+        <?php foreach ($questions as $question) : ?>
+            <div><strong> <?= $escaper->escapeHtml($question->getQuestionText()) ?> </strong></div>
+            <div> <?= $escaper->escapeHtml($question->getQuestionAnswer()) ?> </div>
+            <hr>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+    <?php if ($block->isLoggedIn()) : ?>
+        <div class="columns" style="margin-top: 50px">
+            <div>
+                <h3>Submit your Question</h3>
+
+                <form action="faq/question/save" class="form faq-form" method="post" data-mage-init='{"validation": {}}'>
+
+                    <label for="question_input" class="label faq-label"> <span>Question text </span> </label>
+                    <div class="control">
+                        <input id="question_input" type="text" name="question_text"
+                               class="input-text" data-validate="{required:true, maxlength:255}"
+                               aria-required="true">
+                    </div>
+
+                    <input type="hidden" name="product_id" value="<?= $block->getProductId() ?>">
+                    <input type="submit" class="action submit primary" value="Submit">
+                </form>
+            </div>
+        </div>
+    <?php else: ?>
+        <h3> To ask question, please log in first</h3>
+    <?php endif; ?>
+
+</div>

@@ -1,0 +1,36 @@
+<?php
+/**
+ * @var \Favicode\Faq\Block\CustomerQuestions $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$questions = $block->getCustomerQuestions();
+?>
+
+<hr>
+<div>
+
+    <?php if (empty($questions)) : ?>
+        <div> You haven't asked any questions about our products. If you want to ask a question about a product, you can
+            do so on product page, after selecting "FAQ" tab
+        </div>
+    <?php else: ?>
+        <?php foreach ($questions as $question) : ?>
+            <div class="questions-display">
+                <div>Q:<strong> <?= $escaper->escapeHtml($question->getQuestionText()) ?> </strong></div>
+                <?php if ($question->getQuestionAnswer() !== null) : ?>
+                    <div>A: <?= $escaper->escapeHtml($question->getQuestionAnswer()) ?> </div>
+                <?php else: ?>
+                    <div><em>Sorry, this question is not yet answered </em></div>
+                <?php endif; ?>
+                <div>
+                    <a href="<?= $block->getProductLink((int)$question->getProductId(), (int)$question->getStoreId()) ?>">Product
+                        Link</a>
+                </div>
+            </div>
+            <hr>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+
+</div>
