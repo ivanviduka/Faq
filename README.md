@@ -6,4 +6,4 @@ Module can be enabled with: bin/magento module:enable Favicode_Faq , followed by
 
 Table in database is called favicode_faq, her structure can be seen in etc/db_schema.xml 
 
-If questions are not visible in Admin panel, under Content tab, enable them in Stores/Configuration, by selecting Customer Questions under Favicode tab <br>
+If questions are not visible in Admin panel under Content tab, enable them in Stores/Configuration, by selecting Customer Questions under Favicode tab <br>
