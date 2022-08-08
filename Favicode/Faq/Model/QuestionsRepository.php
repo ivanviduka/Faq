@@ -39,6 +39,9 @@ class QuestionsRepository implements QuestionsRepositoryInterface
         $this->collectionProcessor = $collectionProcessor;
     }
 
+    /**
+     * @throws NoSuchEntityException
+     */
     public function getById(int $questionId): Data\QuestionsInterface
     {
         $question = $this->questionsModelFactory->create();

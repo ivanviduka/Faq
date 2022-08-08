@@ -27,6 +27,10 @@ $questions = $block->getCustomerQuestions();
                     <a href="<?= $block->getProductLink((int)$question->getProductId(), (int)$question->getStoreId()) ?>">Product
                         Link</a>
                 </div>
+                <div>
+                    <a href="http://magento2.loc/faq/question/delete/question_id/<?= $question->getId()?>">Delete question
+                        </a>
+                </div>
             </div>
             <hr>
         <?php endforeach; ?>

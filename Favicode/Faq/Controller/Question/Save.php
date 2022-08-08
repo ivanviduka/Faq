@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace Favicode\Faq\Controller\Question;
 
 
@@ -21,6 +22,7 @@ class Save implements ActionInterface, HttpPostActionInterface
     protected $redirect;
     protected $redirectFactory;
     protected $messageManager;
+    protected $eventManager;
 
     public function __construct(
         \Magento\Framework\App\RequestInterface          $request,
@@ -30,7 +32,8 @@ class Save implements ActionInterface, HttpPostActionInterface
         \Favicode\Faq\Api\QuestionsRepositoryInterface   $questionsRepository,
         \Favicode\Faq\Api\Data\QuestionsInterfaceFactory $questions,
         \Magento\Customer\Model\Session                  $customerSession,
-        \Magento\Store\Model\StoreManagerInterface       $storeManager)
+        \Magento\Store\Model\StoreManagerInterface       $storeManager,
+        \Magento\Framework\Event\ManagerInterface        $eventManager)
     {
 
         $this->request = $request;
@@ -41,6 +44,7 @@ class Save implements ActionInterface, HttpPostActionInterface
         $this->questions = $questions;
         $this->customerSession = $customerSession;
         $this->storeManager = $storeManager;
+        $this->eventManager = $eventManager;
 
     }
 
@@ -74,6 +78,11 @@ class Save implements ActionInterface, HttpPostActionInterface
         } catch (LocalizedException $e) {
             error_log($e->getMessage());
         }
+
+        $this->eventManager->dispatch('question_submitted', [
+                'customer' => $this->customerSession->getCustomer(),
+                'product_id' => $this->request->getParam('product_id'),
+                'store' => $this->storeManager->getStore()]);
 
         $this->messageManager->addSuccessMessage('Your question has been saved successfully!');
         return $resultRedirect->setUrl($this->redirect->getRefererUrl());
