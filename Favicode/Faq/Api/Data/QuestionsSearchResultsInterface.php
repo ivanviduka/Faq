@@ -9,14 +9,14 @@ interface QuestionsSearchResultsInterface extends SearchResultsInterface
     /**
      * Get news list.
      *
-     * @return \Favicode\Sample04\Api\Data\NewsInterface[]
+     * @return \Favicode\Faq\Api\Data\QuestionsInterface[]
      */
     public function getItems();
 
     /**
      * Set news list.
      *
-     * @param \Favicode\Sample04\Api\Data\NewsInterface[] $items
+     * @param \Favicode\Faq\Api\Data\QuestionsInterface[] $items
      * @return $this
      */
     public function setItems(array $items);
