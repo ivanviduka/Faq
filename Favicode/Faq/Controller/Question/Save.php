@@ -78,11 +78,14 @@ class Save implements ActionInterface, HttpPostActionInterface
         } catch (LocalizedException $e) {
             error_log($e->getMessage());
         }
-
+        
+        //Additional task which sends email to Admin, needs another module to work
+        /*
         $this->eventManager->dispatch('question_submitted', [
                 'customer' => $this->customerSession->getCustomer(),
                 'product_id' => $this->request->getParam('product_id'),
                 'store' => $this->storeManager->getStore()]);
+        */
 
         $this->messageManager->addSuccessMessage('Your question has been saved successfully!');
         return $resultRedirect->setUrl($this->redirect->getRefererUrl());
