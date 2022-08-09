@@ -69,7 +69,7 @@ class Save implements ActionInterface, HttpPostActionInterface
         }
 
         $question = $this->questions->create();
-        $this->setQuestionParameters($question, $postParameters['question_text']);
+        $this->setQuestionParameters($question, $postParameters);
 
         try {
             $this->questionsRepository->save($question);
@@ -98,16 +98,16 @@ class Save implements ActionInterface, HttpPostActionInterface
 
     /**
      * @param \Favicode\Faq\Api\Data\QuestionsInterface $question
-     * @param $question_text
+     * @param array $parameters
      * @return void
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function setQuestionParameters(\Favicode\Faq\Api\Data\QuestionsInterface $question, $question_text): void
+    public function setQuestionParameters(\Favicode\Faq\Api\Data\QuestionsInterface $question, array $parameters): void
     {
-        $question->setQuestionText($question_text);
+        $question->setQuestionText($parameters['question_text']);
         $question->setCustomerId((string)$this->customerSession->getId());
         $question->setStoreId((string)$this->storeManager->getStore()->getId());
-        $question->setProductId($this->request->getParam('product_id'));
+        $question->setProductId($parameters['product_id']);
     }
 }
 
