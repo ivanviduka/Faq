@@ -7,14 +7,14 @@ use Magento\Framework\Api\SearchResultsInterface;
 interface QuestionsSearchResultsInterface extends SearchResultsInterface
 {
     /**
-     * Get news list.
+     * Get questions list.
      *
      * @return \Favicode\Faq\Api\Data\QuestionsInterface[]
      */
     public function getItems();
 
     /**
-     * Set news list.
+     * Set questions list.
      *
      * @param \Favicode\Faq\Api\Data\QuestionsInterface[] $items
      * @return $this
