@@ -75,6 +75,7 @@ class Save implements ActionInterface, HttpPostActionInterface
             $this->questionsRepository->save($question);
         } catch (CouldNotSaveException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
+            return $resultRedirect->setUrl($this->redirect->getRefererUrl());
         } catch (LocalizedException $e) {
             error_log($e->getMessage());
         }
