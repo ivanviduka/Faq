@@ -6,7 +6,7 @@
 
 $questions = $block->getProductFaq();
 $categories = $block->getAllProductCategories();
-$numberOfCategories = end($categories)['faq_category_id'];
+$numberOfCategories = empty($categories)? 1 : end($categories)['faq_category_id'];
 
 ?>
 
