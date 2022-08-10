@@ -1,3 +1,6 @@
+
 .questions-display > *{
-    margin: 5px 0;
+    font-size: large;
+    display: inline-block;
+    margin: 5px 10px;
 }

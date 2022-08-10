@@ -1,0 +1,23 @@
+<!--@subject Your question has been answered @-->
+
+{{template config_path="design/email/header_template"}}
+
+<h2> {{trans "Hi %user_name" user_name=$user_name}},</h2>
+
+<p>
+    {{trans "Our admin team answered one of your questions regarding products in our shop. You can check your questions
+    in 'My Account' page, at the link 'My Product Questions'."}}
+</p>
+
+<div>
+    Question we replied to:
+    <hr>
+    <p>Q: <strong> {{var question_text }}</strong></p>
+    <p>A: {{var question_answer }}</p>
+</div>
+
+<p style="font-size:12px;margin:0;">
+    <strong>{{trans "Thank you!"}}</strong>
+</p>
+
+{{template config_path="design/email/footer_template"}}

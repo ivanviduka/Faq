@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace Favicode\Faq\Model;
 
 use Favicode\Faq\Api\Data;

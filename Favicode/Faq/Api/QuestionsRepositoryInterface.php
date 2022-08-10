@@ -1,12 +1,12 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Favicode\Faq\Api;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
 
 interface QuestionsRepositoryInterface
 {
-
     public function getById(int $questionId);
 
     public function save(Data\QuestionsInterface $question);

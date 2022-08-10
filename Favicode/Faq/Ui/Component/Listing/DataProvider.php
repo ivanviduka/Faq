@@ -8,6 +8,9 @@ use Magento\Framework\Exception\NoSuchEntityException;
 
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
+
+    protected $productRepository;
+
     /**
      * @param string $name
      * @param string $primaryFieldName
@@ -43,7 +46,6 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         $data = $this->collection->setOrder('created_at', 'DESC')
             ->setOrder('is_answered', 'ASC')
             ->toArray();
-
 
         foreach ($data['items'] as & $question) {
             $product = $this->productRepository->getById($question['product_id']);

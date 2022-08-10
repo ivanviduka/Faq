@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
-namespace Favicode\Faq\Controller\AdminHtml\Questions;
+
+namespace Favicode\Faq\Controller\Adminhtml\Questions;
 
 
 use Magento\Framework\Exception\LocalizedException;

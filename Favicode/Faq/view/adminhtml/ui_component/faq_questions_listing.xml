@@ -52,6 +52,20 @@
                     </imports>
                 </settings>
             </filterSelect>
+
+            <filterSelect name="faq_category_id" provider="${ $.parentName }"
+                          component="Magento_Ui/js/form/element/ui-select"
+                          template="ui/grid/filters/elements/ui-select">
+                <settings>
+                    <options class="Favicode\Faq\Model\Categories\CategoryList"/>
+                    <caption translate="true">Select...</caption>
+                    <label translate="true">Question category</label>
+                    <dataScope>faq_category_id</dataScope>
+                    <imports>
+                        <link name="visible">componentType = column, index = ${ $.index }:visible</link>
+                    </imports>
+                </settings>
+            </filterSelect>
         </filters>
 
     </listingToolbar>

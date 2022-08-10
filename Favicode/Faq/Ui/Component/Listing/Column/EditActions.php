@@ -39,7 +39,11 @@ class EditActions extends Column
                                 'faq/questions/delete',
                                 ['faq_id' => $item['faq_id']]
                             ),
-                            'label' => __('Delete')
+                            'label' => __('Delete'),
+                            'confirm' => [
+                                'title' => __('Delete question'),
+                                'message' => __('Are you sure you want to delete this question?')
+                            ]
                         ],
                         'change' => [
                             'href' => $this->context->getUrl(
@@ -63,7 +67,11 @@ class EditActions extends Column
                                 'faq/questions/delete',
                                 ['faq_id' => $item['faq_id']]
                             ),
-                            'label' => __('Delete')
+                            'label' => __('Delete'),
+                            'confirm' => [
+                                'title' => __('Delete question'),
+                                'message' => __('Are you sure you want to delete this question?')
+                            ]
                         ]
                     ];
                 }

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">faq_category_form.faq_category_form_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+
+    <settings>
+        <namespace>faq_category_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>faq_category_form.faq_category_form_data_source</dep>
+        </deps>
+
+        <buttons>
+            <button name="back">
+                <label>Back</label>
+                <class>back</class>
+                <url path="faq/category/index"/>
+            </button>
+            <button name="save">
+                <label translate="true">Save Category</label>
+                <class>save primary</class>
+            </button>
+        </buttons>
+    </settings>
+
+    <dataSource name="faq_category_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="faq/category/save"/>
+        </settings>
+        <dataProvider class="Favicode\Faq\Ui\Component\Form\CategoryDataProvider" name="faq_category_form_data_source">
+            <settings>
+                <requestFieldName>faq_category_id</requestFieldName>
+                <primaryFieldName>faq_category_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
+
+        <hidden name="faq_category_id" sortOrder="1">
+            <settings>
+                <dataScope>faq_category_id</dataScope>
+            </settings>
+        </hidden>
+
+        <input name="category_name" sortOrder="10">
+            <settings>
+                <label translate="true">Category Name</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>category_name</dataScope>
+            </settings>
+        </input>
+
+    </fieldset>
+
+</form>

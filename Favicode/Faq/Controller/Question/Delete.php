@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Favicode\Faq\Controller\Question;
 
@@ -22,12 +23,12 @@ class Delete implements ActionInterface, HttpGetActionInterface
     protected $messageManager;
 
     public function __construct(
-        \Magento\Framework\App\RequestInterface          $request,
-        RedirectInterface                                $redirect,
-        ManagerInterface                                 $messageManager,
-        RedirectFactory                                  $redirectFactory,
-        \Favicode\Faq\Api\QuestionsRepositoryInterface   $questionsRepository,
-        \Magento\Customer\Model\Session                  $customerSession)
+        \Magento\Framework\App\RequestInterface        $request,
+        RedirectInterface                              $redirect,
+        ManagerInterface                               $messageManager,
+        RedirectFactory                                $redirectFactory,
+        \Favicode\Faq\Api\QuestionsRepositoryInterface $questionsRepository,
+        \Magento\Customer\Model\Session                $customerSession)
     {
 
         $this->request = $request;

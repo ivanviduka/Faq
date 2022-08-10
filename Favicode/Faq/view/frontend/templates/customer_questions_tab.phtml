@@ -15,22 +15,32 @@ $questions = $block->getCustomerQuestions();
             do so on product page, after selecting "FAQ" tab
         </div>
     <?php else: ?>
-        <?php foreach ($questions as $question) : ?>
+        <?php foreach ($questions
+
+                       as $question) : ?>
             <div class="questions-display">
-                <div>Q:<strong> <?= $escaper->escapeHtml($question->getQuestionText()) ?> </strong></div>
-                <?php if ($question->getQuestionAnswer() !== null) : ?>
-                    <div>A: <?= $escaper->escapeHtml($question->getQuestionAnswer()) ?> </div>
-                <?php else: ?>
-                    <div><em>Sorry, this question is not yet answered </em></div>
-                <?php endif; ?>
                 <div>
-                    <a href="<?= $block->getProductLink((int)$question->getProductId(), (int)$question->getStoreId()) ?>">Product
-                        Link</a>
+                    <div>Q:<strong> <?= $escaper->escapeHtml($question->getQuestionText()) ?> </strong></div>
+                    <?php if ($question->getQuestionAnswer() !== null) : ?>
+                        <div>A: <?= $escaper->escapeHtml($question->getQuestionAnswer()) ?> </div>
+                    <?php else: ?>
+                        <div><em>Sorry, this question is not yet answered </em></div>
+                    <?php endif; ?>
                 </div>
+
                 <div>
-                    <a href="http://magento2.loc/faq/question/delete/question_id/<?= $question->getId()?>">Delete question
+                    <div>
+                        <a href="<?= $block->getProductLink((int)$question->getProductId(), (int)$question->getStoreId()) ?>">Product
+                            Link</a>
+                    </div>
+                    <div>
+                        <a href="http://magento2.loc/faq/question/delete/question_id/<?= $question->getId() ?>"
+                           onclick="return confirm('Are you sure you want to delete this question?');">Delete
+                            question
                         </a>
+                    </div>
                 </div>
+
             </div>
             <hr>
         <?php endforeach; ?>

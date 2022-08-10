@@ -60,6 +60,11 @@ class Questions extends AbstractModel implements QuestionsInterface
         return $this->getData(self::CUSTOMER_ID);
     }
 
+    public function getCategoryId()
+    {
+        return $this->getData(self::CATEGORY_ID);
+    }
+
     public function setIdentity(string $id)
     {
 
@@ -109,5 +114,10 @@ class Questions extends AbstractModel implements QuestionsInterface
     public function setCustomerId(string $customerId)
     {
         return $this->setData(self::CUSTOMER_ID, $customerId);
+    }
+
+    public function setCategoryId(string $categoryId)
+    {
+        return $this->setData(self::CATEGORY_ID, $categoryId);
     }
 }

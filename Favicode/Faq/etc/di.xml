@@ -7,4 +7,8 @@
     <preference for="Favicode\Faq\Api\Data\QuestionsInterface" type="Favicode\Faq\Model\Questions"/>
     <preference for="Favicode\Faq\Api\QuestionsRepositoryInterface" type="Favicode\Faq\Model\QuestionsRepository"/>
 
+    <preference for="Favicode\Faq\Api\Data\CategorySearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Favicode\Faq\Api\Data\CategoryInterface" type="Favicode\Faq\Model\Category"/>
+    <preference for="Favicode\Faq\Api\CategoryRepositoryInterface" type="Favicode\Faq\Model\CategoryRepository"/>
+
 </config>
