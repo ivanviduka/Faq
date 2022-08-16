@@ -15,14 +15,13 @@ class CategoryDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      * @param array $data
      */
     public function __construct(
-        $name,
-        $primaryFieldName,
-        $requestFieldName,
+        string $name,
+        string $primaryFieldName,
+        string $requestFieldName,
         \Favicode\Faq\Model\ResourceModel\Category\CollectionFactory $collectionFactory,
         array $meta = [],
         array $data = []
-    )
-    {
+    ) {
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
 
         $this->collection = $collectionFactory->create();

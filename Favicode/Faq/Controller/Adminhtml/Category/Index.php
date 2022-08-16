@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Favicode\Faq\Controller\Adminhtml\Category;
 
+use Magento\Backend\Model\View\Result\Page;
 use Magento\Framework\Controller\ResultFactory;
 
 class Index extends \Magento\Backend\App\Action
@@ -20,15 +21,15 @@ class Index extends \Magento\Backend\App\Action
     /**
      * Index action
      *
-     * @return \Magento\Backend\Model\View\Result\Page
+     * @return Page
      */
     public function execute()
     {
-        /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
+        /** @var Page $resultPage */
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
 
         $resultPage->setActiveMenu('Favicode_Faq::category');
-        $resultPage->getConfig()->getTitle()->prepend(__('Categories for Customer Questions'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Categories for Customer Question'));
 
         return $resultPage;
     }

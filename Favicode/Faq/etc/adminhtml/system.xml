@@ -8,9 +8,9 @@
         <section id="questions_section" translate="label" sortOrder="150" showInDefault="1" showInWebsite="1"
                  showInStore="1">
             <class>separator-top</class>
-            <label>Customer Questions</label>
+            <label>Customer Question</label>
             <tab>Favicode</tab>
-            <resource>Favicode_Faq::questions</resource>
+            <resource>Favicode_Faq::question</resource>
             <group id="questions_general" translate="label" type="text" sortOrder="10" showInDefault="1"
                    showInWebsite="1" showInStore="1">
                 <label>General Configuration</label>
@@ -26,7 +26,7 @@
         <section id="questions_categories_section" translate="label" sortOrder="160" showInDefault="1" showInWebsite="1"
                  showInStore="1">
             <class>separator-top</class>
-            <label>Questions Categories</label>
+            <label>Question Categories</label>
             <tab>Favicode</tab>
             <resource>Favicode_Faq::category</resource>
             <group id="questions_categories_general" translate="label" type="text" sortOrder="10" showInDefault="1"
@@ -40,6 +40,5 @@
                 </field>
             </group>
         </section>
-
     </system>
 </config>

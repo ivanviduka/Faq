@@ -5,7 +5,9 @@ namespace Favicode\Faq\Model\Answers;
 
 class AnswerList implements \Magento\Framework\Option\ArrayInterface
 {
-
+    /**
+     * @return array
+     */
     public function toOptionArray(): array
     {
         $options = [];

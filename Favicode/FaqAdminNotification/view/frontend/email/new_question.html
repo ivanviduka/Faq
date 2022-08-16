@@ -1,0 +1,23 @@
+<!--@subject New question has been submitted @-->
+
+{{template config_path="design/email/header_template"}}
+
+
+<h2> Hi Admin,</h2>
+
+<p>
+    {{trans "There is a new question submitted by %user_name, from email address %email about a product with ID
+    %product_id.
+    Question was sent from store %store_name." user_name=$user_name email=$email product_id=$product_id
+    store_name=$store_name }}
+</p>
+
+<p>
+    You can see new question, together with all the others, in Content/Question in your Admin Panel.
+</p>
+
+<p style="font-size:12px;margin:0;">
+    <strong>{{trans "Thank you!"}}</strong>
+</p>
+
+{{template config_path="design/email/footer_template"}}

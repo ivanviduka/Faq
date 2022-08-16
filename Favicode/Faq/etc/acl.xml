@@ -7,8 +7,8 @@
             <resource id="Magento_Backend::admin">
                 <resource id="Magento_Backend::content">
                     <resource id="Magento_Backend::content_elements">
-                        <resource id="Favicode_Faq::questions" title="Questions" translate="title" sortOrder="100"/>
-                        <resource id="Favicode_Faq::category" title="Questions Categories" translate="title"
+                        <resource id="Favicode_Faq::question" title="Question" translate="title" sortOrder="100"/>
+                        <resource id="Favicode_Faq::category" title="Question Categories" translate="title"
                                   sortOrder="110"/>
                     </resource>
                 </resource>
