@@ -3,9 +3,9 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Favicode_Faq::questions" title="Questions" translate="title" module="Favicode_Faq"
+        <add id="Favicode_Faq::question" title="Question" translate="title" module="Favicode_Faq"
              sortOrder="110" parent="Magento_Backend::content_elements"
-             action="faq/questions/index" resource="Favicode_Faq::questions"
+             action="faq/question/index" resource="Favicode_Faq::question"
              dependsOnConfig="questions_section/questions_general/enable"/>
 
         <add id="Favicode_Faq::category" title="Category" translate="title" module="Favicode_Faq"

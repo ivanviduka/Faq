@@ -13,25 +13,39 @@ use Magento\Framework\Exception\NoSuchEntityException;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
+    /**
+     * @var Data\CategoryInterfaceFactory
+     */
     protected $categoryModelFactory;
 
+    /**
+     * @var ResourceModel\Category
+     */
     protected $categoryResource;
 
+    /**
+     * @var ResourceModel\Category\CollectionFactory
+     */
     protected $categoryCollectionFactory;
 
+    /**
+     * @var Data\CategorySearchResultsInterfaceFactory
+     */
     protected $searchResultsFactory;
 
+    /**
+     * @var CollectionProcessorInterface
+     */
     private $collectionProcessor;
 
 
     public function __construct(
-        \Favicode\Faq\Api\Data\CategoryInterfaceFactory              $categoryModelFactory,
-        \Favicode\Faq\Model\ResourceModel\Category                   $categoryResource,
+        \Favicode\Faq\Api\Data\CategoryInterfaceFactory $categoryModelFactory,
+        \Favicode\Faq\Model\ResourceModel\Category $categoryResource,
         \Favicode\Faq\Model\ResourceModel\Category\CollectionFactory $categoryCollectionFactory,
         \Favicode\Faq\Api\Data\CategorySearchResultsInterfaceFactory $searchResultsFactory,
-        CollectionProcessorInterface                                 $collectionProcessor
-    )
-    {
+        CollectionProcessorInterface $collectionProcessor
+    ) {
         $this->categoryModelFactory = $categoryModelFactory;
         $this->categoryResource = $categoryResource;
         $this->categoryCollectionFactory = $categoryCollectionFactory;
@@ -40,8 +54,9 @@ class CategoryRepository implements CategoryRepositoryInterface
         $this->collectionProcessor = $collectionProcessor;
     }
 
-
     /**
+     * @param int $categoryId
+     * @return Data\CategoryInterface
      * @throws NoSuchEntityException
      */
     public function getById(int $categoryId)
@@ -57,6 +72,8 @@ class CategoryRepository implements CategoryRepositoryInterface
     }
 
     /**
+     * @param Data\CategoryInterface $category
+     * @return Data\CategoryInterface
      * @throws CouldNotSaveException
      */
     public function save(Data\CategoryInterface $category)
@@ -70,6 +87,8 @@ class CategoryRepository implements CategoryRepositoryInterface
     }
 
     /**
+     * @param Data\CategoryInterface $category
+     * @return bool
      * @throws CouldNotDeleteException
      */
     public function delete(Data\CategoryInterface $category)
@@ -83,6 +102,10 @@ class CategoryRepository implements CategoryRepositoryInterface
         return true;
     }
 
+    /**
+     * @param SearchCriteriaInterface $searchCriteria
+     * @return Data\CategorySearchResultsInterface
+     */
     public function getList(SearchCriteriaInterface $searchCriteria)
     {
         $collection = $this->categoryCollectionFactory->create();

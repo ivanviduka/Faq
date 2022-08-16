@@ -3,34 +3,59 @@ declare(strict_types=1);
 
 namespace Favicode\Faq\Block;
 
-use Favicode\Faq\Api\Data\QuestionsInterface;
-use Favicode\Faq\Api\QuestionsRepositoryInterface;
+use Favicode\Faq\Api\Data\QuestionInterface;
+use Favicode\Faq\Api\QuestionRepositoryInterface;
 use Magento\Catalog\Model\ProductRepository;
+use Magento\Customer\Model\Session;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SortOrderBuilder;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\Template\Context;
+use Psr\Log\LoggerInterface;
+
 
 class CustomerQuestions extends \Magento\Framework\View\Element\Template
 {
+    /**
+     * @var QuestionRepositoryInterface
+     */
     protected $questionsRepository;
+
+    /**
+     * @var SearchCriteriaBuilder
+     */
     protected $searchCriteriaBuilder;
+
+    /**
+     * @var SortOrderBuilder
+     */
     protected $sortOrderBuilder;
+
+    /**
+     * @var Session
+     */
     protected $customerSession;
+
+    /**
+     * @var ProductRepository
+     */
     protected $productRepository;
 
-    private const PRODUCT_PAGE_PATH = "http://magento2.loc/catalog/product/view/id/";
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
 
-    public function __construct(Context                         $context,
-                                QuestionsRepositoryInterface    $questionsRepository,
-                                SortOrderBuilder                $sortOrderBuilder,
-                                SearchCriteriaBuilder           $searchCriteriaBuilder,
-                                ProductRepository               $productRepository,
-                                \Magento\Customer\Model\Session $customerSession,
-
-                                array                           $data = []
-    )
-    {
+    public function __construct(
+        Context $context,
+        QuestionRepositoryInterface $questionsRepository,
+        SortOrderBuilder $sortOrderBuilder,
+        SearchCriteriaBuilder $searchCriteriaBuilder,
+        ProductRepository $productRepository,
+        Session $customerSession,
+        LoggerInterface $logger,
+        array $data = []
+    ) {
         parent::__construct($context, $data);
 
         $this->questionsRepository = $questionsRepository;
@@ -38,22 +63,21 @@ class CustomerQuestions extends \Magento\Framework\View\Element\Template
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->customerSession = $customerSession;
         $this->productRepository = $productRepository;
+        $this->logger = $logger;
     }
 
-
     /**
-     * @return QuestionsInterface[]
+     * @return QuestionInterface[]
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getCustomerQuestions(): array
     {
         $sortOrder = $this->sortOrderBuilder->setField('created_at')->setDirection('desc')->create();
 
-        $this->searchCriteriaBuilder
+        $searchCriteria = $this->searchCriteriaBuilder
             ->addFilter('customer_id', $this->customerSession->getId())
-            ->setSortOrders([$sortOrder]);
-
-        $searchCriteria = $this->searchCriteriaBuilder->create();
+            ->setSortOrders([$sortOrder])
+            ->create();
 
         $questions = $this->questionsRepository->getList($searchCriteria)->getItems();
 
@@ -61,15 +85,20 @@ class CustomerQuestions extends \Magento\Framework\View\Element\Template
 
     }
 
+    /**
+     * @param int $productID
+     * @param int $storeID
+     * @return string
+     */
     public function getProductLink(int $productID, int $storeID): string
     {
         try {
             $product = $this->productRepository->getById($productID, false, $storeID);
         } catch (NoSuchEntityException $e) {
-            error_log($e->getMessage());
+            $this->logger->error($e->getMessage());
         }
 
-        return $product->getProductUrl() ?? self::PRODUCT_PAGE_PATH . $productID;
+        return $product->getProductUrl() ?? $this->getUrl('catalog/product/view', ['id' => $productID]);
     }
 
 }

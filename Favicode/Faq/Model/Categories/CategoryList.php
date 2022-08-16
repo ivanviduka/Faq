@@ -8,18 +8,27 @@ use Magento\Framework\Api\SearchCriteriaBuilder;
 
 class CategoryList implements \Magento\Framework\Option\ArrayInterface
 {
+    /**
+     * @var SearchCriteriaBuilder
+     */
     protected $searchCriteriaBuilder;
+
+    /**
+     * @var CategoryRepositoryInterface
+     */
     protected $categoryRepository;
 
     public function __construct(
-        SearchCriteriaBuilder       $searchCriteriaBuilder,
+        SearchCriteriaBuilder $searchCriteriaBuilder,
         CategoryRepositoryInterface $categoryRepository
-    )
-    {
+    ) {
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->categoryRepository = $categoryRepository;
     }
 
+    /**
+     * @return array
+     */
     public function toOptionArray(): array
     {
         $searchCriteria = $this->searchCriteriaBuilder->create();

@@ -6,34 +6,33 @@
 
 $questions = $block->getProductFaq();
 $categories = $block->getAllProductCategories();
-$numberOfCategories = end($categories)['faq_category_id'];
+$numberOfCategories = empty($categories) ? 1 : end($categories)['faq_category_id'];
 
 ?>
 
 <h2> FAQ </h2>
 <hr>
 <div>
-
     <?php if (empty($questions)) : ?>
         <div class="categories-filter-display">
             <a href="<?= $block->getUrl('*/*/*', ['_use_rewrite' => true]) ?>">
                 <button>
-                    All Questions
+                    <?= __('All Questions') ?>
                 </button>
             </a>
         </div>
-        <p>There are no FAQ for this product</p>
+        <p> <?= __('There are no FAQ for this product') ?></p>
     <?php else : ?>
         <div class="categories-filter-display">
             <a href="<?= $block->getUrl('*/*/*', ['_use_rewrite' => true]) ?>">
                 <button>
-                    All Questions
+                    <?= __('All Questions') ?>
                 </button>
             </a>
             <?php foreach ($categories as $category) : ?>
-                <a href="<?= $block->getUrl('*/*/*', ['_use_rewrite' => true]) . '?category_id=' . $category->getCategoryId() ?>">
+                <a href="<?= $escaper->escapeHtmlAttr($block->getUrl('*/*/*', ['_use_rewrite' => true]) . '?category_id=' . $category->getCategoryId()) ?>">
                     <button>
-                        <?= $category->getCategoryName() ?>
+                        <?= $escaper->escapeHtml($category->getCategoryName()) ?>
                     </button>
                 </a>
             <?php endforeach; ?>
@@ -49,39 +48,41 @@ $numberOfCategories = end($categories)['faq_category_id'];
     <?php if ($block->isLoggedIn()) : ?>
         <div class="columns" style="margin-top: 50px">
             <div>
-                <h3>Submit your Question</h3>
+                <h3> <?= __('Submit your Question') ?></h3>
 
                 <form action="faq/question/save" class="form faq-form" method="post"
                       data-mage-init='{"validation": {}}'>
 
-                    <label for="question_input" class="label faq-label"> <span>Question text </span> </label>
+                    <label for="question_input" class="label faq-label"> <span> <?= __('Question text') ?> </span>
+                    </label>
                     <div class="control">
                         <input id="question_input" type="text" name="question_text"
                                class="input-text" data-validate="{'required':true, 'maxlength':255}"
                                aria-required="true">
                     </div>
 
-                    <label for="category_input" class="label faq-label"> <span>Category</span> </label>
+                    <label for="category_input" class="label faq-label"> <span> <?= __('Category') ?></span> </label>
                     <div class="control">
                         <select id="category_input" name="category_id"
                                 data-validate="{'validate-select':true, 'validate-digits-range':'1-<?= $numberOfCategories ?>'}"
                                 aria-required="true">
-                            <option value="" selected> What is this question about...</option>
+                            <option value="" selected> <?= __('What is this question about...') ?></option>
                             <?php foreach ($categories as $category) : ?>
                                 <option
-                                    value="<?= $category->getCategoryId() ?>"> <?= $category->getCategoryName() ?>
+                                    value="<?= $category->getCategoryId() ?>"> <?= $escaper->escapeHtml($category->getCategoryName()) ?>
                                 </option>
                             <?php endforeach; ?>
                         </select>
                     </div>
 
-                    <input type="hidden" name="product_id" value="<?= $block->getProductId() ?>">
+                    <input type="hidden" name="product_id"
+                           value="<?= $escaper->escapeHtmlAttr($block->getProductId()) ?>">
                     <input type="submit" class="action submit primary" value="Submit">
                 </form>
             </div>
         </div>
     <?php else: ?>
-        <h3> To ask question, please log in first</h3>
+        <h3> <?= __('To ask question, please log in first') ?></h3>
     <?php endif; ?>
 
 </div>

@@ -9,22 +9,37 @@ use Magento\Framework\Controller\Result\RedirectFactory;
 
 class MyQuestionsList implements ActionInterface, HttpGetActionInterface
 {
+    /**
+     * @var \Magento\Framework\View\Result\PageFactory
+     */
     private $resultPageFactory;
+
+    /**
+     * @var \Magento\Customer\Model\Session
+     */
     private $customerSession;
+
+    /**
+     * @var RedirectFactory
+     */
     private $redirect;
 
-    public function __construct(\Magento\Framework\View\Result\PageFactory $resultPageFactory,
-                                RedirectFactory                            $redirectFactory,
-                                \Magento\Customer\Model\Session            $customerSession)
-    {
+    public function __construct(
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
+        RedirectFactory $redirectFactory,
+        \Magento\Customer\Model\Session $customerSession
+    ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->customerSession = $customerSession;
         $this->redirect = $redirectFactory;
     }
 
+
     public function execute()
     {
-        if (!$this->customerSession->isLoggedIn()) return $this->redirect->create()->setPath('customer/account/login');
+        if (!$this->customerSession->isLoggedIn()) {
+            return $this->redirect->create()->setPath('customer/account/login');
+        }
 
         return $this->resultPageFactory->create();
     }

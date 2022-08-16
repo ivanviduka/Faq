@@ -9,26 +9,28 @@ use Magento\Framework\Exception\NoSuchEntityException;
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
 
+    /**
+     * @var ProductRepository
+     */
     protected $productRepository;
 
     /**
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
-     * @param \Favicode\Faq\Model\ResourceModel\Questions\CollectionFactory $collectionFactory
+     * @param \Favicode\Faq\Model\ResourceModel\Question\CollectionFactory $collectionFactory
      * @param array $meta
      * @param array $data
      */
     public function __construct(
-        $name,
-        $primaryFieldName,
-        $requestFieldName,
-        \Favicode\Faq\Model\ResourceModel\Questions\CollectionFactory $collectionFactory,
+        string $name,
+        string $primaryFieldName,
+        string $requestFieldName,
+        \Favicode\Faq\Model\ResourceModel\Question\CollectionFactory $collectionFactory,
         ProductRepository $productRepository,
         array $meta = [],
         array $data = []
-    )
-    {
+    ) {
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
 
         $this->collection = $collectionFactory->create();
@@ -51,6 +53,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
             $product = $this->productRepository->getById($question['product_id']);
             $question['product_name'] = $product->getName();
         }
+
         return $data;
     }
 }
