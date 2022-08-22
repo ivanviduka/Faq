@@ -4,7 +4,7 @@
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">faq_categories_listing.faq_categories_listing_data_source</item>
+            <item name="provider" xsi:type="string">faq_category_listing.faq_category_listing_data_source</item>
         </item>
     </argument>
 
@@ -16,13 +16,13 @@
                 <label translate="true">Add Category</label>
             </button>
         </buttons>
-        <spinner>faq_categories_columns</spinner>
+        <spinner>faq_category_columns</spinner>
         <deps>
-            <dep>faq_categories_listing.faq_categories_listing_data_source</dep>
+            <dep>faq_category_listing.faq_category_listing_data_source</dep>
         </deps>
     </settings>
 
-    <dataSource name="faq_categories_listing_data_source" component="Magento_Ui/js/grid/provider">
+    <dataSource name="faq_category_listing_data_source" component="Magento_Ui/js/grid/provider">
         <settings>
             <storageConfig>
                 <param name="indexField" xsi:type="string">news_id</param>
@@ -31,7 +31,7 @@
         </settings>
         <aclResource>Favicode_Sample06::category</aclResource>
         <dataProvider class="Favicode\Faq\Ui\Component\Listing\CategoryDataProvider"
-                      name="faq_categories_listing_data_source">
+                      name="faq_category_listing_data_source">
             <settings>
                 <requestFieldName>id</requestFieldName>
                 <primaryFieldName>faq_category_id</primaryFieldName>
@@ -48,7 +48,7 @@
 
     </listingToolbar>
 
-    <columns name="faq_categories_columns">
+    <columns name="faq_category_columns">
         <selectionsColumn name="ids">
             <settings>
                 <indexField>faq_category_id</indexField>
