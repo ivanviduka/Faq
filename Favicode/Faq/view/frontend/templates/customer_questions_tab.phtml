@@ -32,7 +32,6 @@ $questions = $block->getCustomerQuestions();
                             <?= __('Product Link') ?></a>
                     </div>
                     <div>
-                        <!--http://magento2.loc/faq/question/delete/question_id/ $question->getId() -->
                         <a href="<?= $escaper->escapeHtmlAttr($block->getUrl('faq/question/delete', ['question_id' => $question->getId()])) ?>"
                            onclick="return confirm('Are you sure you want to delete this question?')">
                             <?= __('Delete question') ?>

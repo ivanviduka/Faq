@@ -5,7 +5,6 @@ namespace Favicode\Faq\Block;
 
 use Favicode\Faq\Api\CategoryRepositoryInterface;
 use Favicode\Faq\Api\Data\CategoryInterface;
-use Favicode\Faq\Api\Data\QuestionInterface;
 use Favicode\Faq\Api\QuestionRepositoryInterface;
 use Magento\Customer\Model\Session;
 use Magento\Framework\Api\SearchCriteriaBuilder;
@@ -58,8 +57,8 @@ class ProductFaq extends \Magento\Framework\View\Element\Template
     }
 
     /**
-     * @return QuestionInterface[]
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @return mixed
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function getProductFaq()
     {
