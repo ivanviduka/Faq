@@ -3,8 +3,12 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
-    <preference for="Favicode\Faq\Api\Data\QuestionsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
-    <preference for="Favicode\Faq\Api\Data\QuestionsInterface" type="Favicode\Faq\Model\Questions"/>
-    <preference for="Favicode\Faq\Api\QuestionsRepositoryInterface" type="Favicode\Faq\Model\QuestionsRepository"/>
+    <preference for="Favicode\Faq\Api\Data\QuestionSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Favicode\Faq\Api\Data\QuestionInterface" type="Favicode\Faq\Model\Question"/>
+    <preference for="Favicode\Faq\Api\QuestionRepositoryInterface" type="Favicode\Faq\Model\QuestionRepository"/>
+
+    <preference for="Favicode\Faq\Api\Data\CategorySearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Favicode\Faq\Api\Data\CategoryInterface" type="Favicode\Faq\Model\Category"/>
+    <preference for="Favicode\Faq\Api\CategoryRepositoryInterface" type="Favicode\Faq\Model\CategoryRepository"/>
 
 </config>

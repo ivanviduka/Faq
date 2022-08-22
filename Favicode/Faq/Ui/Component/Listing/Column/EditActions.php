@@ -29,21 +29,25 @@ class EditActions extends Column
                     $item[$this->getData('name')] = [
                         'edit' => [
                             'href' => $this->context->getUrl(
-                                'faq/questions/edit',
+                                'faq/question/edit',
                                 ['faq_id' => $item['faq_id']]
                             ),
                             'label' => __('Edit')
                         ],
                         'delete' => [
                             'href' => $this->context->getUrl(
-                                'faq/questions/delete',
+                                'faq/question/delete',
                                 ['faq_id' => $item['faq_id']]
                             ),
-                            'label' => __('Delete')
+                            'label' => __('Delete'),
+                            'confirm' => [
+                                'title' => __('Delete question'),
+                                'message' => __('Are you sure you want to delete this question?')
+                            ]
                         ],
                         'change' => [
                             'href' => $this->context->getUrl(
-                                'faq/questions/changestatus',
+                                'faq/question/changestatus',
                                 ['faq_id' => $item['faq_id']]
                             ),
                             'label' => __('Change FAQ status')
@@ -53,17 +57,21 @@ class EditActions extends Column
                     $item[$this->getData('name')] = [
                         'answer' => [
                             'href' => $this->context->getUrl(
-                                'faq/questions/answer',
+                                'faq/question/answer',
                                 ['faq_id' => $item['faq_id']]
                             ),
                             'label' => __('Answer')
                         ],
                         'delete' => [
                             'href' => $this->context->getUrl(
-                                'faq/questions/delete',
+                                'faq/question/delete',
                                 ['faq_id' => $item['faq_id']]
                             ),
-                            'label' => __('Delete')
+                            'label' => __('Delete'),
+                            'confirm' => [
+                                'title' => __('Delete question'),
+                                'message' => __('Are you sure you want to delete this question?')
+                            ]
                         ]
                     ];
                 }

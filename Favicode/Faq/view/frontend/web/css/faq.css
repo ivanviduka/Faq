@@ -4,7 +4,7 @@
 }
 
 .faq-form > *{
-    margin: 5px 0;
+    margin: 10px 0;
 }
 
 .faq-label{
@@ -15,3 +15,9 @@
     content: "*";
     color: red;
 }
+
+.categories-filter-display{
+    margin-bottom: 15px;
+}
+
+

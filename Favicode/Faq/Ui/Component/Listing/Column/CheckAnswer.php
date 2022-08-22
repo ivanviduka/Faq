@@ -7,6 +7,10 @@ use Magento\Ui\Component\Listing\Columns\Column;
 
 class CheckAnswer extends Column
 {
+    /**
+     * @param array $dataSource
+     * @return array
+     */
     public function prepareDataSource(array $dataSource)
     {
         if (!isset($dataSource['data']['items'])) {
@@ -15,7 +19,7 @@ class CheckAnswer extends Column
 
         foreach ($dataSource['data']['items'] as & $item) {
             if (empty($item['question_answer'])) {
-                $item['question_answer'] = "THIS QUESTIONS HASN'T BEEN ANSWERED";
+                $item['question_answer'] = __('THIS QUESTION HASN\'T BEEN ANSWERED');
             }
         }
 

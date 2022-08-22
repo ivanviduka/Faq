@@ -9,7 +9,7 @@
             <block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-questions-list">
                 <arguments>
                     <argument name="path" xsi:type="string">faq/customer/myquestionslist</argument>
-                    <argument name="label" xsi:type="string">My Product Questions</argument>
+                    <argument name="label" xsi:type="string">My Product Question</argument>
                 </arguments>
             </block>
         </referenceBlock>
