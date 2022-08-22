@@ -3,20 +3,17 @@ declare(strict_types=1);
 
 namespace Favicode\Faq\Controller\Question;
 
+use Magento\Customer\Controller\AccountInterface;
 use Magento\Framework\App\Action\HttpGetActionInterface;
-
-use Magento\Framework\App\ActionInterface;
 use Magento\Framework\App\Response\RedirectInterface;
-use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Controller\Result\RedirectFactory;
-use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Message\ManagerInterface;
 use Psr\Log\LoggerInterface;
 
-class Delete implements ActionInterface, HttpGetActionInterface
+class Delete implements AccountInterface, HttpGetActionInterface
 {
 
     /**
@@ -79,10 +76,6 @@ class Delete implements ActionInterface, HttpGetActionInterface
     {
         $resultRedirect = $this->redirectFactory->create();
 
-        if (!$this->isLoggedIn()) {
-            $this->messageManager->addErrorMessage(__('You must be logged in to access this page!'));
-            return $resultRedirect->setUrl($this->redirect->getRefererUrl());
-        }
 
         $questionId = $this->request->getParam('question_id');
 
@@ -110,14 +103,6 @@ class Delete implements ActionInterface, HttpGetActionInterface
         $this->messageManager->addSuccessMessage(__('Question has been deleted successfully!'));
         return $resultRedirect->setUrl($this->redirect->getRefererUrl());
 
-    }
-
-    /**
-     * @return bool
-     */
-    private function isLoggedIn(): bool
-    {
-        return $this->customerSession->isLoggedIn();
     }
 
     /**
