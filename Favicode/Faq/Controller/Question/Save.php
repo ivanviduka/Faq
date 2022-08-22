@@ -7,9 +7,9 @@ use Favicode\Faq\Api\CategoryRepositoryInterface;
 use Favicode\Faq\Api\Data\QuestionInterface;
 use Favicode\Faq\Api\Data\QuestionInterfaceFactory;
 use Favicode\Faq\Api\QuestionRepositoryInterface;
+use Magento\Customer\Controller\AccountInterface;
 use Magento\Customer\Model\Session;
 use Magento\Framework\App\Action\HttpPostActionInterface;
-use Magento\Framework\App\ActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Response\RedirectInterface;
 use Magento\Framework\Controller\Result\Redirect;
@@ -21,7 +21,7 @@ use Magento\Framework\Message\ManagerInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Psr\Log\LoggerInterface;
 
-class Save implements ActionInterface, HttpPostActionInterface
+class Save implements AccountInterface, HttpPostActionInterface
 {
     /**
      * @var QuestionRepositoryInterface
@@ -112,11 +112,6 @@ class Save implements ActionInterface, HttpPostActionInterface
     {
         $resultRedirect = $this->redirectFactory->create();
 
-        if (!$this->isLoggedIn()) {
-            $this->messageManager->addErrorMessage(__('You must be logged in to access this page!'));
-            return $resultRedirect->setUrl($this->redirect->getRefererUrl());
-        }
-
         $postRequest = $this->request;
 
         if (empty($postRequest->getParam('question_text'))) {
@@ -148,14 +143,6 @@ class Save implements ActionInterface, HttpPostActionInterface
 
         $this->messageManager->addSuccessMessage(__('Your question has been saved successfully!'));
         return $resultRedirect->setUrl($this->redirect->getRefererUrl());
-    }
-
-    /**
-     * @return bool
-     */
-    private function isLoggedIn(): bool
-    {
-        return $this->customerSession->isLoggedIn();
     }
 
     /**

@@ -17,16 +17,16 @@ $numberOfCategories = empty($categories) ? 1 : end($categories)['faq_category_id
         <div class="categories-filter-display">
             <a href="<?= $block->getUrl('*/*/*', ['_use_rewrite' => true]) ?>">
                 <button>
-                    <?= __('All Questions') ?>
+                    <?= $escaper->escapeHtml(__('All Questions')) ?>
                 </button>
             </a>
         </div>
-        <p> <?= __('There are no FAQ for this product') ?></p>
+        <p> <?= $escaper->escapeHtml(__('There are no FAQ for this product')) ?></p>
     <?php else : ?>
         <div class="categories-filter-display">
             <a href="<?= $block->getUrl('*/*/*', ['_use_rewrite' => true]) ?>">
                 <button>
-                    <?= __('All Questions') ?>
+                    <?= $escaper->escapeHtml(__('All Questions')) ?>
                 </button>
             </a>
             <?php foreach ($categories as $category) : ?>
@@ -48,12 +48,12 @@ $numberOfCategories = empty($categories) ? 1 : end($categories)['faq_category_id
     <?php if ($block->isLoggedIn()) : ?>
         <div class="columns" style="margin-top: 50px">
             <div>
-                <h3> <?= __('Submit your Question') ?></h3>
+                <h3> <?= $escaper->escapeHtml(__('Submit your Question')) ?></h3>
 
                 <form action="faq/question/save" class="form faq-form" method="post"
                       data-mage-init='{"validation": {}}'>
 
-                    <label for="question_input" class="label faq-label"> <span> <?= __('Question text') ?> </span>
+                    <label for="question_input" class="label faq-label"> <span> <?= $escaper->escapeHtml(__('Question text')) ?> </span>
                     </label>
                     <div class="control">
                         <input id="question_input" type="text" name="question_text"
@@ -61,12 +61,12 @@ $numberOfCategories = empty($categories) ? 1 : end($categories)['faq_category_id
                                aria-required="true">
                     </div>
 
-                    <label for="category_input" class="label faq-label"> <span> <?= __('Category') ?></span> </label>
+                    <label for="category_input" class="label faq-label"> <span> <?= $escaper->escapeHtml(__('Category')) ?></span> </label>
                     <div class="control">
                         <select id="category_input" name="category_id"
                                 data-validate="{'validate-select':true, 'validate-digits-range':'1-<?= $numberOfCategories ?>'}"
                                 aria-required="true">
-                            <option value="" selected> <?= __('What is this question about...') ?></option>
+                            <option value="" selected> <?= $escaper->escapeHtml(__('What is this question about...')) ?></option>
                             <?php foreach ($categories as $category) : ?>
                                 <option
                                     value="<?= $category->getCategoryId() ?>"> <?= $escaper->escapeHtml($category->getCategoryName()) ?>
@@ -82,7 +82,7 @@ $numberOfCategories = empty($categories) ? 1 : end($categories)['faq_category_id
             </div>
         </div>
     <?php else: ?>
-        <h3> <?= __('To ask question, please log in first') ?></h3>
+        <h3> <?= $escaper->escapeHtml(__('To ask question, please log in first')) ?></h3>
     <?php endif; ?>
 
 </div>
