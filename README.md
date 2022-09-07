@@ -9,3 +9,4 @@ Tables in database are called favicode_faq and favicode_faq_categories, their st
 If questions and categories are not visible in Admin panel under Content tab, enable them in Stores/Configuration, by selecting Customer Questions and Questions Categories under Favicode tab <br>
 
 Please add one or more categories through Admin panel before submitting questions form product page
+(https://www.example.com)
